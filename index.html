@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bela Flores · Floricultura</title>
+  <meta name="description" content="Bela Flores — buquês, arranjos e plantas feitos com carinho pela Isabela.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <a href="#inicio" class="logo">Bela <em>Flores</em></a>
+    <nav class="menu">
+      <a href="#flores">Nossas flores</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-texto">
+        <p class="sobretitulo">Floricultura</p>
+        <h1>Flores que contam<br><em>histórias bonitas</em></h1>
+        <p class="hero-sub">Buquês, arranjos e plantas montados à mão, com flores frescas escolhidas uma a uma.</p>
+        <div class="hero-botoes">
+          <a href="#flores" class="botao">Ver as flores</a>
+          <a href="#contato" class="botao botao-linha">Falar com a <span data-nome></span></a>
+        </div>
+      </div>
+      <div class="hero-foto" aria-hidden="true">
+        <img src="fotos/capa.jpg" alt="" data-fallback>
+      </div>
+    </section>
+
+    <section id="flores" class="secao">
+      <div class="secao-cabecalho">
+        <p class="sobretitulo">Vitrine</p>
+        <h2>Nossas flores</h2>
+        <p>Toque em uma foto para ver de pertinho.</p>
+      </div>
+      <div class="filtros" role="tablist" aria-label="Categorias"></div>
+      <div class="galeria"></div>
+    </section>
+
+    <section id="sobre" class="secao sobre">
+      <div class="sobre-foto">
+        <img src="fotos/isabela.jpg" alt="Isabela, da Bela Flores" data-fallback>
+      </div>
+      <div class="sobre-texto">
+        <p class="sobretitulo">Sobre</p>
+        <h2>Oi, eu sou a <span data-nome></span></h2>
+        <p>A Bela Flores é o começo de um sonho. Desde sempre as flores fizeram parte da minha vida, e hoje dou o primeiro passo para transformar esse amor no meu próprio cantinho.</p>
+        <p>Cada buquê e cada arranjo é feito à mão, com calma e carinho, das cores escolhidas à fita do laço. Quero que cada flor leve um pouquinho desse sonho para quem recebe.</p>
+        <p>Obrigada por fazer parte desse início! Gostou de alguma peça? Me chama que a gente conversa.</p>
+      </div>
+    </section>
+
+    <section id="contato" class="secao contato">
+      <p class="sobretitulo">Contato</p>
+      <h2>Vamos conversar?</h2>
+      <p>Fale direto com a <strong data-nome></strong>:</p>
+      <p class="telefone" data-telefone></p>
+      <div class="contato-botoes">
+        <a class="botao" data-whatsapp target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a class="botao botao-linha" data-ligar>Ligar</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p class="logo">Bela <em>Flores</em></p>
+    <p>Feito com carinho pela <span data-nome></span> · <span data-ano></span></p>
+  </footer>
+
+  <dialog class="lightbox">
+    <button class="fechar" aria-label="Fechar">×</button>
+    <img alt="">
+    <div class="lightbox-info">
+      <h3></h3>
+      <p></p>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
