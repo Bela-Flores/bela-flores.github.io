@@ -67,11 +67,55 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 .hero h1 { font-size: clamp(2.8rem, 7vw, 4.8rem); color: var(--verde); margin-bottom: 1.2rem; }
 .hero-sub { font-size: 1.15rem; color: var(--texto-suave); max-width: 34ch; margin: 0 0 2rem; }
 .hero-botoes, .contato-botoes { display: flex; gap: .8rem; flex-wrap: wrap; }
-.hero-foto {
-  aspect-ratio: 4 / 5; border-radius: 200px 200px var(--raio) var(--raio); overflow: hidden;
-  background: var(--rosa-claro); box-shadow: 0 30px 60px -30px rgba(47, 74, 58, .45);
+/* Cartão da loja */
+.cartao {
+  container-type: inline-size;
+  position: relative; overflow: hidden; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--raio);
+  background:
+    radial-gradient(ellipse at 50% 42%, #fffaf8 0%, #faf0eb 55%, #f2e0d9 100%);
+  box-shadow: 0 30px 60px -30px rgba(120, 70, 70, .45), inset 0 0 0 1px rgba(196, 160, 106, .25);
+  text-align: center;
 }
-.hero-foto img { width: 100%; height: 100%; object-fit: cover; }
+.cartao::before { /* textura de papel */
+  content: ""; position: absolute; inset: 0; opacity: .35; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .35 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cartao::after { /* moldura fina */
+  content: ""; position: absolute; inset: 3cqi; border: 1px solid rgba(196, 160, 106, .45);
+  border-radius: calc(var(--raio) - 6px); pointer-events: none;
+}
+.cartao-ramo { position: absolute; width: 22cqi; opacity: .55; pointer-events: none; }
+.cartao-ramo svg { display: block; width: 100%; }
+.cartao-ramo-1 { left: -3cqi; bottom: -4cqi; }
+.cartao-ramo-2 { right: -3cqi; bottom: -4cqi; transform: scaleX(-1); }
+.cartao-ramo-3 { left: -3cqi; top: -4cqi; transform: scaleY(-1); }
+.cartao-ramo-4 { right: -3cqi; top: -4cqi; transform: scale(-1, -1); }
+.cartao-conteudo { position: relative; padding: 8cqi 9cqi 8cqi; display: flex; flex-direction: column; align-items: center; }
+.cartao-cesta { width: 20cqi; height: auto; }
+.cartao-nome {
+  margin: 0; font-family: "Great Vibes", "Brush Script MT", cursive; font-weight: 400;
+  font-size: 10cqi; line-height: 1.05; color: #b8707a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+}
+.cartao-slogan {
+  margin: .6cqi 0 0; font-family: var(--serifa); text-transform: uppercase;
+  letter-spacing: .22em; font-size: clamp(.62rem, 2.4cqi, 1rem); color: #8c6a5e;
+}
+.cartao-ornamento { width: 40cqi; height: auto; margin: 1cqi 0; }
+.cartao-frase {
+  margin: 0; font-family: var(--serifa); font-style: italic; font-weight: 500;
+  font-size: clamp(.85rem, 3.6cqi, 1.5rem); line-height: 1.25; color: #b8707a; max-width: 28ch;
+}
+.cartao-contatos {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 3cqi; margin-top: 3cqi;
+  font-size: clamp(.68rem, 2.3cqi, .95rem); font-weight: 600; color: #7d5f57;
+}
+.cartao-contatos > span { display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; }
+.cartao-contatos svg { width: 1.35em; height: 1.35em; color: #b8707a; flex: none; }
+
+.cartao-secao { max-width: 640px; padding-top: 0; }
 
 /* Filtros */
 .filtros { display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
@@ -110,7 +154,16 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 }
 .contato h2, .contato .sobretitulo { color: #fff; }
 .contato .sobretitulo { opacity: .7; }
-.telefone { font-family: var(--serifa); font-size: clamp(2rem, 6vw, 3rem); margin: .2rem 0 1.6rem; }
+.telefones { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 4rem; margin-top: 1rem; }
+.telefone-rotulo {
+  margin: 1.2rem 0 0; text-transform: uppercase; letter-spacing: .18em;
+  font-size: .78rem; font-weight: 700; opacity: .75;
+}
+.telefone { font-family: var(--serifa); font-size: clamp(2rem, 6vw, 2.8rem); margin: .2rem 0 1rem; }
+.instagram-bloco { margin-top: 2.2rem; }
+.contato .botao-insta {
+  background: linear-gradient(45deg, #f2a65a, #e1306c 55%, #833ab4); border: 0; color: #fff;
+}
 .contato-botoes { justify-content: center; }
 .contato .botao { background: var(--rosa); border-color: var(--rosa); }
 .contato .botao:hover { background: #b45e6b; }
@@ -140,7 +193,11 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 /* Celular */
 @media (max-width: 760px) {
   .hero, .sobre { grid-template-columns: 1fr; }
-  .hero-foto { order: -1; max-width: 360px; width: 100%; justify-self: center; }
+  .hero .cartao { order: -1; }
+  .galeria { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+  .produto-info { padding: .7rem .8rem .9rem; }
+  .produto-info h3 { font-size: 1.15rem; }
+  .logo { font-size: 1.4rem; }
   .menu { gap: 1rem; }
   .menu a { font-size: .85rem; }
 }

@@ -1,8 +1,7 @@
 Coloque aqui as fotos dos seus produtos.
 
 Fotos especiais:
-  capa.jpg     -> foto grande do topo do site
-  isabela.jpg  -> sua foto na parte "Sobre"
+  sobre.jpg    -> foto da Isabela e da Tayline na parte "Quem somos"
 
 Fotos dos produtos: use os nomes que estão no arquivo script.js
 (ex.: buque-rosas.jpg, orquidea.jpg). Se quiser outros nomes,
