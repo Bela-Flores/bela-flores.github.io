@@ -73,10 +73,15 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 .hero-botoes, .contato-botoes { display: flex; gap: .8rem; flex-wrap: wrap; }
 .hero-foto {
   aspect-ratio: 4 / 5; width: 100%; max-width: 480px; justify-self: center;
-  border-radius: var(--raio); overflow: hidden; background: var(--rosa-claro);
+  border-radius: var(--raio); background: var(--rosa-claro);
   box-shadow: 0 30px 60px -30px rgba(120, 70, 70, .45);
 }
-.hero-foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+.hero-foto { position: relative; overflow: visible; isolation: isolate; }
+.hero-foto::before {
+  content: ""; position: absolute; inset: 1.4rem -1.4rem -1.4rem 1.4rem; z-index: -1;
+  border: 1.5px solid var(--rosa); border-radius: var(--raio); opacity: .45;
+}
+.hero-foto img { border-radius: var(--raio); width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
 /* Cartão da loja */
 .cartao {
   container-type: inline-size;
@@ -126,6 +131,15 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 .cartao-contatos svg { width: 1.35em; height: 1.35em; color: #b8707a; flex: none; }
 
 .cartao-secao { max-width: 640px; padding-top: 0; }
+
+/* Galeria: primeiro buquê em destaque (fecha as linhas certinho: 13 peças = 4 linhas de 4) */
+.galeria-destaque .produto:first-child { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; }
+.galeria-destaque .produto:first-child .produto-foto { aspect-ratio: auto; flex: 1; min-height: 0; }
+.galeria-destaque .produto:first-child .produto-info h3 { font-size: 1.9rem; }
+.produto-info h3::after {
+  content: " →"; color: var(--rosa); opacity: 0; transition: opacity .2s;
+}
+.produto:hover .produto-info h3::after, .produto:focus-visible .produto-info h3::after { opacity: 1; }
 
 /* Filtros */
 .filtros { display: flex; justify-content: center; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
@@ -195,6 +209,26 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
 .lightbox-info { padding: 1.2rem 1.5rem 1.6rem; }
 .lightbox-info h3 { font-size: 1.9rem; color: var(--verde); margin-bottom: .4rem; }
 .lightbox-info p { margin: 0; color: var(--texto-suave); }
+.lightbox-botoes { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+
+/* WhatsApp flutuante */
+.whats-flutuante {
+  position: fixed; right: clamp(1rem, 3vw, 2rem); bottom: clamp(1rem, 3vw, 2rem); z-index: 20;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .75rem 1.2rem .75rem 1rem; border-radius: 999px;
+  background: var(--rosa); color: #fff; text-decoration: none; font-weight: 700; font-size: .95rem;
+  box-shadow: 0 12px 28px -10px rgba(120, 50, 60, .55); transition: transform .15s, background .15s;
+}
+.whats-flutuante:hover { transform: translateY(-2px); background: #b45e6b; }
+.whats-flutuante svg { width: 1.5rem; height: 1.5rem; }
+
+/* Acessibilidade */
+:focus-visible { outline: 2.5px solid var(--rosa); outline-offset: 3px; }
+.produto:focus-visible { outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
 .fechar {
   position: absolute; top: .6rem; right: .6rem; width: 2.4rem; height: 2.4rem; border-radius: 50%;
   border: 0; background: rgba(255, 255, 255, .9); font-size: 1.6rem; line-height: 1; cursor: pointer;
@@ -210,4 +244,13 @@ h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--verde); margin-bottom: 
   .logo { font-size: 1.4rem; }
   .menu { gap: 1rem; }
   .menu a { font-size: .85rem; }
+  .hero-botoes { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-botoes .botao { text-align: center; padding-inline: .8rem; }
+  .hero-botoes .botao:first-child { grid-column: 1 / -1; }
+  .hero-foto::before { inset: .9rem -.9rem -.9rem .9rem; }
+  .hero-foto { width: calc(100% - .9rem); justify-self: start; }
+  .galeria-destaque .produto:first-child .produto-foto { aspect-ratio: 1; }
+  .whats-flutuante { padding: .9rem; }
+  .whats-flutuante span { display: none; }
+  .rodape { padding-bottom: 6rem; }
 }

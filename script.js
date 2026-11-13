@@ -64,8 +64,10 @@ function usarFlorSeFaltar(img) {
 document.querySelectorAll("[data-ano]").forEach(el => el.textContent = new Date().getFullYear());
 document.querySelectorAll("img[data-fallback]").forEach(usarFlorSeFaltar);
 
-const linkWhats = t => `https://wa.me/${t.whatsapp}?text=` +
-  encodeURIComponent(`Oi, ${t.nome}! Vi o site da ${LOJA.nome} e gostaria de saber mais.`);
+const linkWhats = (t, produto) => `https://wa.me/${t.whatsapp}?text=` +
+  encodeURIComponent(produto
+    ? `Oi, ${t.nome}! Vi o "${produto}" no site da ${LOJA.nome} e gostaria de encomendar.`
+    : `Oi, ${t.nome}! Vi o site da ${LOJA.nome} e gostaria de saber mais.`);
 
 // Botões "Falar com a ..." abrem o WhatsApp de cada uma
 document.querySelectorAll("[data-whats-de]").forEach(el => {
@@ -165,6 +167,7 @@ const categorias = ["Todas", ...new Set(PRODUTOS.map(p => p.categoria))];
 
 function mostrar(categoria) {
   galeria.innerHTML = "";
+  galeria.classList.toggle("galeria-destaque", categoria === "Todas");
   PRODUTOS.filter(p => categoria === "Todas" || p.categoria === categoria).forEach(p => {
     const card = document.createElement("button");
     card.className = "produto";
@@ -200,6 +203,16 @@ function abrir(p, src) {
   lightbox.querySelector("img").alt = p.nome;
   lightbox.querySelector("h3").textContent = p.nome;
   lightbox.querySelector("p").textContent = p.descricao;
+  const pedir = lightbox.querySelector("[data-pedir]");
+  pedir.innerHTML = "";
+  CONTATO.telefones.forEach((t, i) => {
+    const a = document.createElement("a");
+    a.className = i ? "botao botao-linha" : "botao";
+    a.target = "_blank"; a.rel = "noopener";
+    a.href = linkWhats(t, p.nome);
+    a.textContent = `Pedir com a ${t.nome}`;
+    pedir.appendChild(a);
+  });
   lightbox.showModal();
 }
 lightbox.querySelector(".fechar").addEventListener("click", () => lightbox.close());
